@@ -1,12 +1,16 @@
 Page slide region
------------------
+=================
 
 This module adds a new region to any theme. Blocks added to this region are rendered as a drawer.
 
-# Step 1
+## Step 1
 
 ![](http://f.cl.ly/items/3D0I2D0F411P193F2i03/Page%20slide%20region%20block%20admin.png)
 
-# Step 2
+## Step 1.5
+
+![](http://f.cl.ly/items/1p0R2c3v1x3e222D290u/Page%20slide%20region%20toggle.png)
+
+## Step 2
 
 ![](http://f.cl.ly/items/473l3U203b3u2M3J1W3I/Page%20slide%20region.png)
