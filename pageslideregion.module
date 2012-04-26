@@ -1,0 +1,90 @@
+<?php
+
+/**
+ * Implements hook_system_info_alter().
+ */
+function pageslideregion_system_info_alter(&$info, $file, $type) {
+  if ($type == 'theme') {
+    $info['regions']['pageslideregion'] = t('PageSlide region');
+  }
+}
+
+/**
+ * Implements hook_page_build().
+ */
+function pageslideregion_page_build(&$page) {
+  if (!empty($page['pageslideregion'])) {
+    foreach (element_children($page['pageslideregion']) as $child) {
+      if (!empty($page['pageslideregion'][$child]['#contextual_links'])) {
+        unset($page['pageslideregion'][$child]['#contextual_links']);
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_block_view_alter().
+ */
+function pageslideregion_block_view_alter(&$data, $block) {
+  if (!empty($data) && $block->region == 'pageslideregion' && !empty($data['content'])) {
+    if (!is_array($data['content'])) {
+      $content = array('#markup' => $data['content']);
+    }
+    else {
+      $content = $data['content'];
+    }
+
+    $content['#prefix'] = '<div>';
+    $content['#suffix'] = '</div>';
+    $data['content'] = array($content);
+  }
+}
+
+/**
+ * Implements hook_preprocess_block().
+ */
+function pageslideregion_preprocess_block(&$variables, $hook) {
+  if ($variables['block']->region == 'pageslideregion') {
+    $variables['theme_hook_suggestions'][] = 'block__no_wrapper';
+    $variables['block']->subject = '<a href="#' . $variables['block_html_id'] . '">' . $variables['block']->subject . '</a>';
+    $variables['title_attributes_array']['id'] = $variables['block_html_id'];
+  }
+}
+
+/**
+ * Implements hook_preprocess_region().
+ */
+function pageslideregion_preprocess_region(&$variables, $hook) {
+  if ($variables['region'] == 'pageslideregion') {
+    $variables['theme_hook_suggestions'][] = 'region__no_wrapper';
+  }
+}
+
+/**
+ * Implements hook_page_alter().
+ */
+function pageslideregion_page_alter(&$page) {
+  if (!empty($page['pageslideregion'])) {
+    $page['pageslideregion']['#prefix'] = '<div id="pageslideregion"><div>';
+    $page['pageslideregion']['#suffix'] = '</div></div>';
+    $page['pageslideregion']['#attached']['js'] = array(drupal_get_path('module', 'pageslideregion') . '/js/pageslide.region.js' => array('scope' => 'footer'));
+    $page['pageslideregion']['#attached']['library'] = array(
+      array('system', 'ui.accordion'),
+      array('system', 'ui.resizable'),
+      array('system', 'jquery.cookie'),
+    );
+    $page['page_bottom']['pageslideregion'] = $page['pageslideregion'];
+    unset($page['pageslideregion']);
+  }
+}
+
+/**
+ * Implements hook_module_implements_alter().
+ */
+function pageslideregion_module_implements_alter(&$implementations, $hook) {
+  if ($hook == 'page_alter' || $hook == 'page_build') {
+    $group = $implementations['pageslideregion'];
+    unset($implementations['pageslideregion']);
+    $implementations['pageslideregion'] = $group;
+  }
+}
