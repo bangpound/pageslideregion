@@ -27,6 +27,8 @@ function pageslideregion_system_info_alter(&$info, $file, $type) {
 function pageslideregion_page_build(&$page) {
   if (!empty($page['pageslideregion'])) {
     foreach (element_children($page['pageslideregion']) as $child) {
+
+      // Disable contextual links.
       if (!empty($page['pageslideregion'][$child]['#contextual_links'])) {
         unset($page['pageslideregion'][$child]['#contextual_links']);
       }
