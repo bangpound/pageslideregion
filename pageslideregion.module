@@ -65,6 +65,7 @@ function pageslideregion_page_alter(&$page) {
     );
     $page['pageslideregion']['#attached']['library'] = array(
       array('system', 'ui.accordion'),
+      array('system', 'ui.button'),
       array('system', 'ui.resizable'),
       array('system', 'jquery.cookie'),
     );
