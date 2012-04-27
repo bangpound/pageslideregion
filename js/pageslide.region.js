@@ -4,8 +4,8 @@
 
   Drupal.behaviors.pageSlideRegion = {
     attach: function (context, settings) {
-      $('#pageslideregion', context).css({ position: 'fixed', top: 0, left: 0, bottom: 0, zIndex: 9999, width: '260px', backgroundColor: '#ffffff' }).hide();
-      $('<button>Sidebar</button>', context).prependTo('body').click(function () {
+      $('#pageslideregion', context).css({ position: 'fixed', top: 0, left: 0, bottom: 0, zIndex: 499, width: '260px', backgroundColor: '#ffffff' }).hide();
+      $('<button>Sidebar</button>', context).prependTo('body').button().click(function () {
 				var state = $('#pageslideregion').is(':hidden');
 
         if (state) {
@@ -17,6 +17,7 @@
                 return this.hash.toLowerCase() === ('#' + $.cookie('_pageSlideRegion'));
               },
               fillSpace: true,
+              header: '.block-title',
               change: function (event, ui) {
                 if ($(ui.options.header, this).index(ui.newHeader) === $(ui.options.header, this).index(ui.oldHeader)) {
                   $.cookie('_pageSlideRegion', false);

@@ -67,7 +67,16 @@ function pageslideregion_page_alter(&$page) {
   if (!empty($page['pageslideregion'])) {
     $page['pageslideregion']['#prefix'] = '<div id="pageslideregion"><div>';
     $page['pageslideregion']['#suffix'] = '</div></div>';
-    $page['pageslideregion']['#attached']['js'] = array(drupal_get_path('module', 'pageslideregion') . '/js/pageslide.region.js' => array('scope' => 'footer'));
+    $page['pageslideregion']['#attached']['js'] = array(
+      ctools_attach_js('pageslide.region', 'pageslideregion') => array(
+        'scope' => 'footer'
+      )
+    );
+    $page['pageslideregion']['#attached']['css'] = array(
+      ctools_attach_css('jquery-ui-1.8.19.custom', 'pageslideregion') => array(
+        'scope' => 'footer'
+      )
+    );
     $page['pageslideregion']['#attached']['library'] = array(
       array('system', 'ui.accordion'),
       array('system', 'ui.resizable'),

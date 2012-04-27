@@ -1,3 +1,4 @@
 name = PageSlide region
 description = PageSlide region
 core = 7.x
+dependencies[] = ctools

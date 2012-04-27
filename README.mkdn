@@ -14,3 +14,11 @@ This module adds a new region to any theme. Blocks added to this region are rend
 ## Step 2
 
 ![](http://f.cl.ly/items/473l3U203b3u2M3J1W3I/Page%20slide%20region.png)
+
+Sources
+-------
+
+[jQuery UI ThemeRoller][1]
+
+[1]: http://jqueryui.com/themeroller/?ffDefault=%22Segoe%20UI%22,%20Candara,%20%22Bitstream%20Vera%20Sans%22,%20%22DejaVu%20Sans%22,%20%22Bitstream%20Vera%20Sans%22,%20%22Trebuchet%20MS%22,%20Verdana,%20%22Verdana%20Ref%22,%20sans-serif;&fwDefault=normal&fsDefault=1.1em&cornerRadius=0&bgColorHeader=000000&bgTextureHeader=01_flat.png&bgImgOpacityHeader=75&borderColorHeader=000000&fcHeader=ffffff&iconColorHeader=ffffff&bgColorContent=ffffff&bgTextureContent=01_flat.png&bgImgOpacityContent=75&borderColorContent=000000&fcContent=000000&iconColorContent=000000&bgColorDefault=ffffff&bgTextureDefault=02_glass.png&bgImgOpacityDefault=75&borderColorDefault=000000&fcDefault=000000&iconColorDefault=000000&bgColorHover=000000&bgTextureHover=01_flat.png&bgImgOpacityHover=75&borderColorHover=000000&fcHover=ffffff&iconColorHover=ffffff&bgColorActive=000000&bgTextureActive=01_flat.png&bgImgOpacityActive=65&borderColorActive=000000&fcActive=ffffff&iconColorActive=ffffff&bgColorHighlight=dabf2c&bgTextureHighlight=01_flat.png&bgImgOpacityHighlight=55&borderColorHighlight=dabf2c&fcHighlight=ffffff&iconColorHighlight=ffffff&bgColorError=b91d1d&bgTextureError=01_flat.png&bgImgOpacityError=95&borderColorError=b91d1d&fcError=ffffff&iconColorError=ffffff&bgColorOverlay=aaaaaa&bgTextureOverlay=01_flat.png&bgImgOpacityOverlay=0&opacityOverlay=30&bgColorShadow=aaaaaa&bgTextureShadow=01_flat.png&bgImgOpacityShadow=0&opacityShadow=30&thicknessShadow=8px&offsetTopShadow=-8px&offsetLeftShadow=-8px&cornerRadiusShadow=8px
+
