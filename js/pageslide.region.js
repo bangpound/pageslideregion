@@ -11,7 +11,7 @@
         options = {
           navigation: true,
           navigationFilter: function () {
-            return this.hash.toLowerCase() === ('#' + $.cookie('_pageSlideRegion'));
+            return this.hash.toLowerCase() === $.cookie('_pageSlideRegion');
           },
           fillSpace: true,
           header: '.block-title',
@@ -19,7 +19,7 @@
             if ($(ui.options.header, this).index(ui.newHeader) === $(ui.options.header, this).index(ui.oldHeader)) {
               $.cookie('_pageSlideRegion', false);
             } else {
-              $.cookie('_pageSlideRegion', ui.newHeader.attr('id'));
+              $.cookie('_pageSlideRegion', $('a', ui.newHeader).attr('href'));
             }
           },
           create: function (event, ui) {
