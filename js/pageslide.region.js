@@ -6,7 +6,8 @@
     attach: function (context, settings) {
       var $region = $('#pageslideregion', context),
         $accordion = $('#pageslideregion > div'),
-        padding = $('body').css('paddingTop'),
+        paddingTop = parseInt($('body').css('paddingTop'), 10) + parseInt($('body').css('marginTop'), 10),
+        paddingBottom = parseInt($('body').css('paddingBottom'), 10) + parseInt($('body').css('marginBottom'), 10),
         options = {
           navigation: true,
           navigationFilter: function () {
@@ -28,9 +29,9 @@
 
       $region.css({
         position: 'fixed',
-        top: padding,
+        top: paddingTop || 0,
         left: 0,
-        bottom: 0,
+        bottom: paddingBottom || 0,
         zIndex: 499,
         width: '260px',
         backgroundColor: '#ffffff'
