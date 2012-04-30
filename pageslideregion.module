@@ -9,6 +9,10 @@ function pageslideregion_theme($existing, $type, $theme, $path) {
       'render element' => 'elements',
       'template' => 'block--pageslideregion',
     ),
+    'region__pageslideregion' => array(
+      'render element' => 'elements',
+      'template' => 'region--pageslideregion',
+    ),
   );
 }
 
