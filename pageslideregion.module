@@ -53,7 +53,7 @@ function pageslideregion_preprocess_block(&$variables, $hook) {
  */
 function pageslideregion_page_alter(&$page) {
   if (!empty($page['pageslideregion'])) {
-    $page['pageslideregion']['#prefix'] = '<div id="pageslideregion">';
+    $page['pageslideregion']['#prefix'] = '<div id="pageslideregion" style="display:none;">';
     $page['pageslideregion']['#suffix'] = '</div>';
     $page['pageslideregion']['#attached']['js'] = array(
       ctools_attach_js('pageslide.region', 'pageslideregion') => array(
