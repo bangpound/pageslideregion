@@ -38,6 +38,7 @@
       }).hide();
 
       $('<button>Sidebar</button>', context)
+        .attr('id', 'pageslideregion-toggle')
         .prependTo('body')
         .button()
         .click(function () {
