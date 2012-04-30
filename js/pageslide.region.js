@@ -44,7 +44,7 @@
           var state = $region.is(':hidden');
 
           if (state) {
-            $region.show('slide', function () {
+            $region.show('slide', {direction: 'left'}, function () {
               $accordion.accordion('resize');
             });
             $accordion.accordion(options);
@@ -55,7 +55,7 @@
               }
             });
           } else {
-            $region.resizable('destroy').hide('slide', function() {
+            $region.resizable('destroy').hide('slide', {direction: 'left'}, function() {
               $accordion.accordion('destroy');
             });
             $('body').css('marginLeft', 'auto');

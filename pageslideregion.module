@@ -73,6 +73,7 @@ function pageslideregion_page_alter(&$page) {
       array('system', 'ui.accordion'),
       array('system', 'ui.button'),
       array('system', 'ui.resizable'),
+      array('system', 'effects.slide'),
       array('system', 'jquery.cookie'),
     );
     $page['page_bottom']['pageslideregion'] = $page['pageslideregion'];
