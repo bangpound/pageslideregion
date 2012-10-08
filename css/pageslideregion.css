@@ -1,14 +1,5 @@
-.container {
-  width: 100%; }
-
 .row {
   overflow: hidden; }
-
-.row .row {
-  overflow: visible; }
-
-body {
-  width: 100%; }
 
 #pageslideregion-counter:before {
   content: " ";
@@ -17,53 +8,51 @@ body {
   top: 0;
   left: -100%;
   width: 100%;
-  height: 100%;
-  background: #e4e4e4;
-  -webkit-box-shadow: inset -3px 0px 6px 0px rgba(0, 0, 0, 0.15);
-  -moz-box-shadow: inset -3px 0px 6px 0px rgba(0, 0, 0, 0.15);
-  box-shadow: inset -3px 0px 6px 0px rgba(0, 0, 0, 0.15); }
+  height: 100%; }
 
 #pageslideregion,
 #pageslideregion-counter {
   width: 100%;
   position: relative;
   z-index: 1;
-  -webkit-transition: 0.25s all ease-in;
-  -moz-transition: 0.25s all ease-in;
-  -ms-transition: 0.25s all ease-in;
-  -o-transition: 0.25s all ease-in;
-  transition: 0.25s all ease-in; }
+  -webkit-transition: all 0.25s ease-in;
+  -moz-transition: all 0.25s ease-in;
+  -ms-transition: all 0.25s ease-in;
+  -o-transition: all 0.25s ease-in;
+  transition: all 0.25s ease-in; }
 
 .js #pageslideregion {
   margin-left: -100%;
   width: 260px;
   float: left;
-  z-index: 2; }
+  z-index: 2;
+  background-color: #333333; }
 .js #pageslideregion-counter {
   margin-left: 0;
   float: right; }
 .js .pageslideregion-active #pageslideregion {
-  margin-left: 0; }
+  margin-left: 0;
+  -webkit-box-shadow: 0px 0px 5px #333333;
+  -moz-box-shadow: 0px 0px 5px #333333;
+  box-shadow: 0px 0px 5px #333333; }
 .js .pageslideregion-active #pageslideregion-counter {
   margin-right: -260px; }
 
-#pageslideregion-toggle a span {
-  text-indent: 110%;
-  white-space: nowrap;
-  overflow: hidden;
-  background-image: url("../images/toggle.png");
-  background-repeat: no-repeat;
-  background-position: center;
-  display: block;
-  height: 14px;
-  margin: 3px 0px;
-  text-indent: -9999px;
-  vertical-align: text-bottom;
-  width: 11px; }
+#pageslideregion-toggle a {
+  margin-right: 1ex; }
+  #pageslideregion-toggle a span {
+    text-indent: 110%;
+    white-space: nowrap;
+    overflow: hidden;
+    background-image: url("../images/toggle.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    display: block;
+    height: 14px;
+    margin: 3px 0px;
+    text-indent: -9999px;
+    vertical-align: text-bottom;
+    width: 11px; }
 
-#pageslideregion .ui-widget {
-  font-size: .8em; }
-  #pageslideregion .ui-widget .ui-widget {
-    font-size: .8em; }
-  #pageslideregion .ui-widget input, #pageslideregion .ui-widget select, #pageslideregion .ui-widget textarea, #pageslideregion .ui-widget button {
-    font-size: .8em; }
+#pageslideregion .ui-widget, #pageslideregion .ui-widget .ui-widget, #pageslideregion .ui-widget input, #pageslideregion .ui-widget select, #pageslideregion .ui-widget textarea, #pageslideregion .ui-widget button {
+  font-size: 0.8125em; }
