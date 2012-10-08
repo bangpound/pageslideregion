@@ -71,7 +71,7 @@
     $accordion.accordion(options);
 
     // Expand or collapse the pageSlideRegion based on the cookie value.
-    if (collapsed === 1) {
+    if (!collapsed) {
       $('body').addClass('pageslideregion-active');
       $('#pageslideregion-toggle a').addClass('active');
     }
@@ -84,7 +84,7 @@
     $('body').toggleClass('pageslideregion-active');
     $.cookie(
       'Drupal.pageSlideRegion.collapsed',
-      $('body').hasClass('pageslideregion-active') ? 1 : 0,
+      $('body').hasClass('pageslideregion-active') ? 0 : 1,
       {
         path: Drupal.settings.basePath,
         // The cookie should "never" expire.
