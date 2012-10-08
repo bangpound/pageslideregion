@@ -79,12 +79,13 @@ function pageslideregion_toolbar_pre_render($toolbar) {
  */
 function pageslideregion_page_alter(&$page) {
   if (!empty($page['pageslideregion'])) {
-    if (isset($page['page_top']['toolbar'])) {
+    if (isset($page['page_top']['toolbar']) && user_access('access toolbar')) {
       // If the toolbar is available, add a pre-render function to display the
       // current shortcuts in the toolbar drawer.
       $page['page_top']['toolbar']['#pre_render'][] = 'pageslideregion_toolbar_pre_render';
     }
 
+    $page['pageslideregion']['#access'] =  user_access('access toolbar');
     $page['pageslideregion']['#prefix'] = '<div id="pageslideregion">';
     $page['pageslideregion']['#suffix'] = '</div>';
     $page['pageslideregion']['#attached']['js'] = array(
@@ -123,7 +124,7 @@ function pageslideregion_module_implements_alter(&$implementations, $hook) {
  * Add some page classes, so global page theming can adjust to the toolbar.
  */
 function pageslideregion_preprocess_html(&$vars) {
-  if (isset($vars['page']['page_bottom']['pageslideregion'])) {
+  if (isset($vars['page']['page_bottom']['pageslideregion']) && user_access('access toolbar')) {
     if (!_pageslideregion_is_collapsed()) {
       $vars['classes_array'][] = 'pageslideregion-active';
     }
