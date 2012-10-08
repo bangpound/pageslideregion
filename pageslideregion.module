@@ -4,16 +4,19 @@
  * Implements hook_theme().
  */
 function pageslideregion_theme($existing, $type, $theme, $path) {
-  return array(
-    'block__pageslideregion' => array(
-      'render element' => 'elements',
-      'template' => 'block--pageslideregion',
-    ),
-    'region__pageslideregion' => array(
-      'render element' => 'elements',
-      'template' => 'region--pageslideregion',
-    ),
+  $info['toolbar__pageslideregion'] = array(
+    'render element' => 'toolbar',
+    'template' => 'toolbar--pageslideregion',
   );
+  $info['block__pageslideregion'] = array(
+    'render element' => 'elements',
+    'template' => 'block--pageslideregion',
+  );
+  $info['region__pageslideregion'] = array(
+    'render element' => 'elements',
+    'template' => 'region--pageslideregion',
+  );
+  return $info;
 }
 
 /**
@@ -52,12 +55,37 @@ function pageslideregion_preprocess_block(&$variables, $hook) {
   }
 }
 
+function pageslideregion_toolbar_pre_render($toolbar) {
+  if (!is_array($toolbar['#theme'])) {
+    $toolbar['#theme'] = array($toolbar['#theme']);
+  }
+  array_unshift($toolbar['#theme'], 'toolbar__pageslideregion');
+  $toolbar['pageslideregion_toggle'] = array(
+    '#theme' => 'links',
+    '#links' => array(
+      'toggle' => array(
+        'title' => '<span class="pageslideregion-link">Sidebar</span>',
+        'href' => 'pageslideregion/toggle',
+        'html' => TRUE,
+      ),
+    ),
+    '#attributes' => array('id' => 'pageslideregion-toggle'),
+  );
+  return $toolbar;
+}
+
 /**
  * Implements hook_page_alter().
  */
 function pageslideregion_page_alter(&$page) {
   if (!empty($page['pageslideregion'])) {
-    $page['pageslideregion']['#prefix'] = '<div id="pageslideregion" style="display:none;">';
+    if (isset($page['page_top']['toolbar'])) {
+      // If the toolbar is available, add a pre-render function to display the
+      // current shortcuts in the toolbar drawer.
+      $page['page_top']['toolbar']['#pre_render'][] = 'pageslideregion_toolbar_pre_render';
+    }
+
+    $page['pageslideregion']['#prefix'] = '<div id="pageslideregion">';
     $page['pageslideregion']['#suffix'] = '</div>';
     $page['pageslideregion']['#attached']['js'] = array(
       ctools_attach_js('pageslide.region', 'pageslideregion') => array(
@@ -65,15 +93,12 @@ function pageslideregion_page_alter(&$page) {
       )
     );
     $page['pageslideregion']['#attached']['css'] = array(
-      ctools_attach_css('jquery-ui-1.8.19.custom', 'pageslideregion') => array(
+      ctools_attach_css('pageslideregion', 'pageslideregion') => array(
         'scope' => 'footer'
       )
     );
     $page['pageslideregion']['#attached']['library'] = array(
       array('system', 'ui.accordion'),
-      array('system', 'ui.button'),
-      array('system', 'ui.resizable'),
-      array('system', 'effects.slide'),
       array('system', 'jquery.cookie'),
     );
     $page['page_bottom']['pageslideregion'] = $page['pageslideregion'];
@@ -91,3 +116,56 @@ function pageslideregion_module_implements_alter(&$implementations, $hook) {
     $implementations['pageslideregion'] = $group;
   }
 }
+
+/**
+ * Implements hook_preprocess_html().
+ *
+ * Add some page classes, so global page theming can adjust to the toolbar.
+ */
+function pageslideregion_preprocess_html(&$vars) {
+  if (isset($vars['page']['page_bottom']['pageslideregion'])) {
+    if (!_pageslideregion_is_collapsed()) {
+      $vars['classes_array'][] = 'pageslideregion-active';
+    }
+  }
+}
+
+
+/**
+ * Implements hook_menu().
+ */
+function pageslideregion_menu() {
+  $items['pageslideregion/toggle'] = array(
+    'title' => 'Toggle drawer visibility',
+    'type' => MENU_CALLBACK,
+    'page callback' => 'pageslideregion_toggle_page',
+    'access arguments' => array('access toolbar'),
+  );
+  return $items;
+}
+
+/**
+ * Menu callback; toggles the visibility of the toolbar drawer.
+ */
+function pageslideregion_toggle_page() {
+  global $base_path;
+  // Toggle the value in the cookie.
+  setcookie('Drupal.pageSlideRegion.collapsed', !_pageslideregion_is_collapsed(), NULL, $base_path);
+  // Redirect the user from where he used the toggle element.
+  drupal_goto();
+}
+
+
+/**
+ * Determines the current state of the toolbar drawer's visibility.
+ *
+ * @return
+ *   TRUE when drawer is collapsed, FALSE when it is expanded.
+ */
+function _pageslideregion_is_collapsed() {
+  // PHP converts dots into underscores in cookie names to avoid problems with
+  // its parser, so we use a converted cookie name.
+  return isset($_COOKIE['Drupal_pageSlideRegion_collapsed']) ? $_COOKIE['Drupal_pageSlideRegion_collapsed'] : 0;
+}
+
+
