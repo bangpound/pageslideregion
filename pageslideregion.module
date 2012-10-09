@@ -151,7 +151,7 @@ function pageslideregion_menu() {
 function pageslideregion_toggle_page() {
   global $base_path;
   // Toggle the value in the cookie.
-  setcookie('Drupal.pageSlideRegion.collapsed', !_pageslideregion_is_collapsed(), 36500, $base_path);
+  setcookie('Drupal.pageSlideRegion.collapsed', !_pageslideregion_is_collapsed(), NULL, $base_path);
   // Redirect the user from where he used the toggle element.
   drupal_goto();
 }
