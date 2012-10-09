@@ -44,6 +44,7 @@
         navigationFilter: function () {
           return this.hash.toLowerCase() === $.cookie('_pageSlideRegion');
         },
+        fillSpace: true,
         header: '.block-title',
         change: function (event, ui) {
           if ($(ui.options.header, this).index(ui.newHeader) === $(ui.options.header, this).index(ui.oldHeader)) {
