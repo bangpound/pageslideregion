@@ -132,7 +132,6 @@ function pageslideregion_preprocess_html(&$vars) {
   }
 }
 
-
 /**
  * Implements hook_menu().
  */
