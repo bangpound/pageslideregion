@@ -25,6 +25,8 @@
         $(window).triggerHandler('resize');
         return false;
       });
+      Drupal.pageSlideRegion.accordion.accordion('enable');
+      Drupal.pageSlideRegion.accordion.accordion('resize');
     }
   };
 
@@ -67,7 +69,7 @@
       bottom: paddingBottom || 0
     });
 
-    $accordion.accordion(options);
+    Drupal.pageSlideRegion.accordion = $accordion.accordion(options);
 
     // Expand or collapse the pageSlideRegion based on the cookie value.
     if (!collapsed) {
@@ -81,6 +83,13 @@
    */
   Drupal.pageSlideRegion.toggle = function () {
     $('body').toggleClass('pageslideregion-active');
+    if ($('body').hasClass('pageslideregion-active')) {
+      Drupal.pageSlideRegion.accordion.accordion('enable');
+      Drupal.pageSlideRegion.accordion.accordion('resize');
+    }
+    else {
+      Drupal.pageSlideRegion.accordion.accordion('disable');
+    }
     $.cookie(
       'Drupal.pageSlideRegion.collapsed',
       $('body').hasClass('pageslideregion-active') ? 0 : 1,
