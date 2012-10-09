@@ -67,6 +67,7 @@ function pageslideregion_toolbar_pre_render($toolbar) {
         'title' => '<span class="pageslideregion-link">Sidebar</span>',
         'href' => 'pageslideregion/toggle',
         'html' => TRUE,
+        'query' => drupal_get_destination(),
       ),
     ),
     '#attributes' => array('id' => 'pageslideregion-toggle'),
