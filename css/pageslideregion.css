@@ -1,7 +1,7 @@
-.row {
+#pageslideregion-wrapper {
   overflow: hidden; }
 
-#pageslideregion-counter:before {
+#page:before {
   content: " ";
   position: absolute;
   z-index: -1;
@@ -11,7 +11,7 @@
   height: 100%; }
 
 #pageslideregion,
-#pageslideregion-counter {
+#page {
   width: 100%;
   position: relative;
   z-index: 1;
@@ -21,22 +21,38 @@
   -o-transition: all 0.25s ease-in;
   transition: all 0.25s ease-in; }
 
-.js #pageslideregion {
+#pageslideregion {
   margin-left: -100%;
   width: 260px;
   float: left;
   z-index: 2;
-  background-color: #333333; }
-.js #pageslideregion-counter {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0; }
+
+#page {
   margin-left: 0;
   float: right; }
-.js .pageslideregion-active #pageslideregion {
+
+.pageslideregion-active #pageslideregion {
   margin-left: 0;
   -webkit-box-shadow: 0px 0px 5px #333333;
   -moz-box-shadow: 0px 0px 5px #333333;
   box-shadow: 0px 0px 5px #333333; }
-.js .pageslideregion-active #pageslideregion-counter {
-  margin-right: -260px; }
+
+#pageslideregion-wrapper {
+  -webkit-transition: all 0.25s ease-in;
+  -moz-transition: all 0.25s ease-in;
+  -ms-transition: all 0.25s ease-in;
+  -o-transition: all 0.25s ease-in;
+  transition: all 0.25s ease-in; }
+
+.pageslideregion-active #pageslideregion-wrapper {
+  padding-left: 260px; }
+
+.js #pageslideregion {
+  background-color: #333333; }
 
 #pageslideregion-toggle a {
   margin-right: 1ex; }

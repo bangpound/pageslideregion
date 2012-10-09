@@ -1,8 +1,11 @@
 @import "compass";
 
-$sidebar-width: 260px;
+$sidebar-width: 260px !default;
+$fluid-width: true !default;
 
-.row { overflow: hidden; }
+#pageslideregion-wrapper {
+  overflow: hidden;
+}
 
 %role-main:before {
   content: " ";
@@ -22,21 +25,37 @@ $sidebar-width: 260px;
   @include single-transition(all, .25s, ease-in);
 }
 
-.js {
   %role-complementary {
     margin-left: -100%;
     width: $sidebar-width;
     float: left;
     z-index: 2;
-    background-color: $default-box-shadow-color;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
   }
   %role-main {
     margin-left: 0;
     float: right;
   }
+
   .pageslideregion-active %role-complementary {
     margin-left: 0;
     @include single-box-shadow;
+  }
+
+@if ($fluid-width) {
+  #pageslideregion-wrapper {
+    @include single-transition(all, .25s, ease-in);
+  }
+  .pageslideregion-active #pageslideregion-wrapper {
+    padding-left: $sidebar-width;
+  }
+}
+@else {
+  .pageslideregion-active #pageslideregion-wrapper {
+    padding-left: 0;
   }
 
   .pageslideregion-active %role-main {
@@ -44,12 +63,17 @@ $sidebar-width: 260px;
   }
 }
 
+.js {
+  %role-complementary {
+    background-color: $default-box-shadow-color;
+  }
+}
 
 #pageslideregion {
   @extend %role-complementary;
 }
 
-#pageslideregion-counter {
+#page {
   @extend %role-main;
 }
 

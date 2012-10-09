@@ -11,11 +11,11 @@
     attach: function (context, settings) {
 
       // Set the initial state of the pageSlideRegion.
-      $('#page', context).wrapAll('<div id="pageslideregion-counter"></div>');
-      $('#pageslideregion', context).insertAfter($('#pageslideregion-counter'));
-      $('#pageslideregion', context).once('pageSlideRegion', Drupal.pageSlideRegion.init);
+      $('#pageslideregion', context)
+        .insertAfter($('#page'))
+        .once('pageSlideRegion', Drupal.pageSlideRegion.init);
 
-      $('#pageslideregion,#pageslideregion-counter', context).wrapAll('<div class="row"></div>');
+      $('#pageslideregion,#page', context).wrapAll('<div id="pageslideregion-wrapper"></div>');
 
       // Toggling pageSlideRegion drawer.
       $('#pageslideregion-toggle a', context).once('pageSlideRegion-toggle').click(function (e) {
@@ -44,7 +44,6 @@
         navigationFilter: function () {
           return this.hash.toLowerCase() === $.cookie('_pageSlideRegion');
         },
-        fillSpace: true,
         header: '.block-title',
         change: function (event, ui) {
           if ($(ui.options.header, this).index(ui.newHeader) === $(ui.options.header, this).index(ui.oldHeader)) {
@@ -62,9 +61,8 @@
       };
 
     $region.css({
-      position: 'fixed',
+      height: ($region.height() - paddingTop - paddingBottom) + 'px',
       top: paddingTop || 0,
-      left: 0,
       bottom: paddingBottom || 0
     });
 
