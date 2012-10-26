@@ -10,12 +10,12 @@
   Drupal.behaviors.pageSlideRegion = {
     attach: function (context, settings) {
 
+      $('body', context).children().wrapAll('<div id="pageslideregion-wrapper"></div>');
+
       // Set the initial state of the pageSlideRegion.
       $('#pageslideregion', context)
-        .insertAfter($('#page'))
+        .insertAfter($('#pageslideregion-wrapper'))
         .once('pageSlideRegion', Drupal.pageSlideRegion.init);
-
-      $('#pageslideregion,#page', context).wrapAll('<div id="pageslideregion-wrapper"></div>');
 
       // Toggling pageSlideRegion drawer.
       $('#pageslideregion-toggle a', context).once('pageSlideRegion-toggle').click(function (e) {
@@ -47,7 +47,7 @@
           return this.hash.toLowerCase() === $.cookie('_pageSlideRegion');
         },
         fillSpace: true,
-        header: '.block-title',
+        duration: 250,
         change: function (event, ui) {
           if ($(ui.options.header, this).index(ui.newHeader) === $(ui.options.header, this).index(ui.oldHeader)) {
             $.cookie('_pageSlideRegion', false, {
@@ -84,11 +84,9 @@
   Drupal.pageSlideRegion.toggle = function () {
     $('body').toggleClass('pageslideregion-active');
     if ($('body').hasClass('pageslideregion-active')) {
+      Drupal.pageSlideRegion.accordion.accordion('disable');
       Drupal.pageSlideRegion.accordion.accordion('enable');
       Drupal.pageSlideRegion.accordion.accordion('resize');
-    }
-    else {
-      Drupal.pageSlideRegion.accordion.accordion('disable');
     }
     $.cookie(
       'Drupal.pageSlideRegion.collapsed',

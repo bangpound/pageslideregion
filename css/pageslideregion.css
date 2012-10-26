@@ -1,7 +1,7 @@
 #pageslideregion-wrapper {
   overflow: hidden; }
 
-#page:before {
+#pageslideregion-wrapper:before {
   content: " ";
   position: absolute;
   z-index: -1;
@@ -11,18 +11,33 @@
   height: 100%; }
 
 #pageslideregion,
-#page {
+#pageslideregion-wrapper {
   width: 100%;
   position: relative;
   z-index: 1;
-  -webkit-transition: all 0.25s ease-in;
-  -moz-transition: all 0.25s ease-in;
-  -ms-transition: all 0.25s ease-in;
-  -o-transition: all 0.25s ease-in;
-  transition: all 0.25s ease-in; }
+  -webkit-transition-property: width;
+  -moz-transition-property: width;
+  -ms-transition-property: width;
+  -o-transition-property: width;
+  transition-property: width;
+  -webkit-transition-property: margin;
+  -moz-transition-property: margin;
+  -ms-transition-property: margin;
+  -o-transition-property: margin;
+  transition-property: margin;
+  -webkit-transition-duration: 0.25s;
+  -moz-transition-duration: 0.25s;
+  -ms-transition-duration: 0.25s;
+  -o-transition-duration: 0.25s;
+  transition-duration: 0.25s;
+  -webkit-transition-timing-function: ease-in;
+  -moz-transition-timing-function: ease-in;
+  -ms-transition-timing-function: ease-in;
+  -o-transition-timing-function: ease-in;
+  transition-timing-function: ease-in; }
 
 #pageslideregion {
-  margin-left: -100%;
+  margin-left: -260px;
   width: 260px;
   float: left;
   z-index: 2;
@@ -31,7 +46,7 @@
   left: 0;
   bottom: 0; }
 
-#page {
+#pageslideregion-wrapper {
   margin-left: 0;
   float: right; }
 
@@ -40,16 +55,8 @@
   -webkit-box-shadow: 0px 0px 5px #333333;
   -moz-box-shadow: 0px 0px 5px #333333;
   box-shadow: 0px 0px 5px #333333; }
-
-#pageslideregion-wrapper {
-  -webkit-transition: all 0.25s ease-in;
-  -moz-transition: all 0.25s ease-in;
-  -ms-transition: all 0.25s ease-in;
-  -o-transition: all 0.25s ease-in;
-  transition: all 0.25s ease-in; }
-
 .pageslideregion-active #pageslideregion-wrapper {
-  padding-left: 260px; }
+  margin-right: -260px; }
 
 .js #pageslideregion {
   background-color: #333333; }
@@ -71,4 +78,4 @@
     width: 11px; }
 
 #pageslideregion .ui-widget, #pageslideregion .ui-widget .ui-widget, #pageslideregion .ui-widget input, #pageslideregion .ui-widget select, #pageslideregion .ui-widget textarea, #pageslideregion .ui-widget button {
-  font-size: 0.8125em; }
+  font-size: 13px; }

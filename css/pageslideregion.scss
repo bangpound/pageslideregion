@@ -1,7 +1,6 @@
 @import "compass";
 
 $sidebar-width: 260px !default;
-$fluid-width: true !default;
 
 #pageslideregion-wrapper {
   overflow: hidden;
@@ -22,11 +21,14 @@ $fluid-width: true !default;
   width: 100%;
   position: relative;
   z-index: 1;
-  @include single-transition(all, .25s, ease-in);
+  @include transition-property(width);
+  @include transition-property(margin);
+  @include transition-duration(.25s);
+  @include transition-timing-function(ease-in);
 }
 
   %role-complementary {
-    margin-left: -100%;
+    margin-left: - $sidebar-width;
     width: $sidebar-width;
     float: left;
     z-index: 2;
@@ -40,25 +42,12 @@ $fluid-width: true !default;
     float: right;
   }
 
-  .pageslideregion-active %role-complementary {
+.pageslideregion-active {
+  %role-complementary {
     margin-left: 0;
     @include single-box-shadow;
   }
-
-@if ($fluid-width) {
-  #pageslideregion-wrapper {
-    @include single-transition(all, .25s, ease-in);
-  }
-  .pageslideregion-active #pageslideregion-wrapper {
-    padding-left: $sidebar-width;
-  }
-}
-@else {
-  .pageslideregion-active #pageslideregion-wrapper {
-    padding-left: 0;
-  }
-
-  .pageslideregion-active %role-main {
+  %role-main {
     margin-right: -$sidebar-width;
   }
 }
@@ -73,7 +62,7 @@ $fluid-width: true !default;
   @extend %role-complementary;
 }
 
-#page {
+#pageslideregion-wrapper {
   @extend %role-main;
 }
 
@@ -95,7 +84,7 @@ $fluid-width: true !default;
 
 #pageslideregion {
   .ui-widget {
-    font-size: 0.8125em;
+    font-size: 13px;
     .ui-widget {
       @extend .ui-widget;
     }
