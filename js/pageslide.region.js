@@ -38,17 +38,10 @@
         },
         fillSpace: true,
         change: function (event, ui) {
-          if ($(ui.options.header, this).index(ui.newHeader) === $(ui.options.header, this).index(ui.oldHeader)) {
-            $.cookie('_pageSlideRegion', false, {
-              path: Drupal.settings.basePath,
-              expires: 36500
-            });
-          } else {
-            $.cookie('_pageSlideRegion', $('a', ui.newHeader).attr('href'), {
-              path: Drupal.settings.basePath,
-              expires: 36500
-            });
-          }
+          $.cookie('_pageSlideRegion', $('a', ui.newHeader).attr('href'), {
+            path: Drupal.settings.basePath,
+            expires: 36500
+          });
         }
       };
 
