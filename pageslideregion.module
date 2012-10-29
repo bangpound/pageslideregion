@@ -65,9 +65,10 @@ function pageslideregion_toolbar_pre_render($toolbar) {
     '#links' => array(
       'toggle' => array(
         'title' => '<span class="pageslideregion-link">Sidebar</span>',
-        'href' => 'pageslideregion/toggle',
+        'href' => '#',
         'html' => TRUE,
-        'query' => drupal_get_destination(),
+        'absolute' => TRUE,
+        'external' => TRUE,
       ),
     ),
     '#attributes' => array('id' => 'pageslideregion-toggle'),
@@ -117,54 +118,5 @@ function pageslideregion_module_implements_alter(&$implementations, $hook) {
   }
 }
 
-/**
- * Implements hook_preprocess_html().
- *
- * Add some page classes, so global page theming can adjust to the toolbar.
- */
-function pageslideregion_preprocess_html(&$vars) {
-  if (isset($vars['page']['page_bottom']['pageslideregion']) && user_access('access toolbar')) {
-    if (!_pageslideregion_is_collapsed()) {
-      $vars['classes_array'][] = 'pageslideregion-active';
-    }
-  }
-}
-
-/**
- * Implements hook_menu().
- */
-function pageslideregion_menu() {
-  $items['pageslideregion/toggle'] = array(
-    'title' => 'Toggle drawer visibility',
-    'type' => MENU_CALLBACK,
-    'page callback' => 'pageslideregion_toggle_page',
-    'access arguments' => array('access toolbar'),
-  );
-  return $items;
-}
-
-/**
- * Menu callback; toggles the visibility of the toolbar drawer.
- */
-function pageslideregion_toggle_page() {
-  global $base_path;
-  // Toggle the value in the cookie.
-  setcookie('Drupal.pageSlideRegion.collapsed', !_pageslideregion_is_collapsed(), NULL, $base_path);
-  // Redirect the user from where he used the toggle element.
-  drupal_goto();
-}
-
-
-/**
- * Determines the current state of the toolbar drawer's visibility.
- *
- * @return
- *   TRUE when drawer is collapsed, FALSE when it is expanded.
- */
-function _pageslideregion_is_collapsed() {
-  // PHP converts dots into underscores in cookie names to avoid problems with
-  // its parser, so we use a converted cookie name.
-  return isset($_COOKIE['Drupal_pageSlideRegion_collapsed']) ? $_COOKIE['Drupal_pageSlideRegion_collapsed'] : 0;
-}
 
 

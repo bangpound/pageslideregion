@@ -38,8 +38,6 @@
       $accordion = $region.children().wrapAll('<div>').parent('div'),
       paddingTop = parseInt($('body').css('paddingTop'), 10) + parseInt($('body').css('marginTop'), 10),
       paddingBottom = parseInt($('body').css('paddingBottom'), 10) + parseInt($('body').css('marginBottom'), 10),
-      // Retrieve the collapsed status from a stored cookie.
-      collapsed = parseInt($.cookie('Drupal.pageSlideRegion.collapsed'), 10),
       options = {
         navigation: true,
         navigationFilter: function () {
@@ -69,12 +67,6 @@
     });
 
     Drupal.pageSlideRegion.accordion = $accordion.accordion(options);
-
-    // Expand or collapse the pageSlideRegion based on the cookie value.
-    if (!collapsed) {
-      $('body').addClass('pageslideregion-active');
-      $('#pageslideregion-toggle a').addClass('active');
-    }
   };
 
   /**
@@ -87,15 +79,6 @@
       Drupal.pageSlideRegion.accordion.accordion('enable');
       Drupal.pageSlideRegion.accordion.accordion('resize');
     }
-    $.cookie(
-      'Drupal.pageSlideRegion.collapsed',
-      $('body').hasClass('pageslideregion-active') ? 0 : 1,
-      {
-        path: Drupal.settings.basePath,
-        // The cookie should "never" expire.
-        expires: 36500
-      }
-    );
   };
 
 })(jQuery);
