@@ -87,8 +87,6 @@ function pageslideregion_page_alter(&$page) {
     }
 
     $page['pageslideregion']['#access'] =  user_access('access toolbar');
-    $page['pageslideregion']['#prefix'] = '<div id="pageslideregion">';
-    $page['pageslideregion']['#suffix'] = '</div>';
     $page['pageslideregion']['#attached']['js'] = array(
       ctools_attach_js('pageslide.region', 'pageslideregion') => array(
         'scope' => 'footer'

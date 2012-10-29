@@ -10,11 +10,8 @@
   Drupal.behaviors.pageSlideRegion = {
     attach: function (context, settings) {
 
-      $('body', context).children().wrapAll('<div id="pageslideregion-wrapper"></div>');
-
       // Set the initial state of the pageSlideRegion.
-      $('#pageslideregion', context)
-        .insertAfter($('#pageslideregion-wrapper'))
+      $('.region-pageslideregion', context)
         .once('pageSlideRegion', Drupal.pageSlideRegion.init);
 
       // Toggling pageSlideRegion drawer.
@@ -35,8 +32,10 @@
    */
   Drupal.pageSlideRegion.init = function () {
 
-    var $region = $(this),
-      $accordion = $region.children('div'),
+    $('body').children().wrapAll('<div id="pageslideregion-wrapper"></div>');
+
+    var $region = $(this).insertAfter($('#pageslideregion-wrapper')),
+      $accordion = $region.children().wrapAll('<div>').parent('div'),
       paddingTop = parseInt($('body').css('paddingTop'), 10) + parseInt($('body').css('marginTop'), 10),
       paddingBottom = parseInt($('body').css('paddingBottom'), 10) + parseInt($('body').css('marginBottom'), 10),
       // Retrieve the collapsed status from a stored cookie.
