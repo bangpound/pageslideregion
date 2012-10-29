@@ -122,5 +122,13 @@ function pageslideregion_module_implements_alter(&$implementations, $hook) {
   }
 }
 
-
-
+/**
+ * Implements hook_block_view_MODULE_DELTA_alter().
+ */
+function pageslideregion_block_view_devel_execute_php_alter(&$data, $block) {
+  if ($block->region == PAGESLIDEREGION_NAME && $block->status && !empty($data)) {
+    unset($data['content']['execute']['#type']);
+    unset($data['content']['execute']['#theme_wrappers']);
+    $data['content']['execute']['code']['#rows'] = 10;
+  }
+}
