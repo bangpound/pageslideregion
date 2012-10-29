@@ -63,6 +63,16 @@
       $accordion.accordion('resize');
     });
 
+    $accordion.find('.ui-accordion-content a').click(function (event) {
+      event.preventDefault();
+      $('body').toggleClass("pageslideregion-active");
+      var dest = $(this).attr('href');
+      if (typeof (dest) != "undefined" && dest != "") {
+        setTimeout(function () {
+          window.location.href = dest;
+        }, 100);
+      }
+    });
   };
 
   /**
