@@ -37,7 +37,6 @@
           return this.hash.toLowerCase() === $.cookie('_pageSlideRegion');
         },
         fillSpace: true,
-        duration: 250,
         change: function (event, ui) {
           if ($(ui.options.header, this).index(ui.newHeader) === $(ui.options.header, this).index(ui.oldHeader)) {
             $.cookie('_pageSlideRegion', false, {
