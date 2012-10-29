@@ -2,10 +2,6 @@
 
 $sidebar-width: 260px !default;
 
-#pageslideregion-wrapper {
-  overflow: hidden;
-}
-
 .js {
   %role-main,
   %role-complementary {
@@ -45,6 +41,7 @@ $sidebar-width: 260px !default;
 }
 
 .pageslideregion-active {
+  overflow: hidden;
   %role-main {
     margin-right: -$sidebar-width;
   }
