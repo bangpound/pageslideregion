@@ -92,4 +92,21 @@ $sidebar-width: 260px !default;
       @extend .ui-widget;
     }
   }
+  .ui-accordion-content {
+    ul {
+      padding-left: 0;
+    }
+    %bullet-list {
+      margin-left: 0;
+    }
+    div.item-list > ul {
+      @extend %bullet-list;
+    }
+    & > ul.menu {
+      @extend %bullet-list;
+    }
+    & > ul.links {
+      @extend %bullet-list;
+    }
+  }
 }
