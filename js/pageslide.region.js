@@ -15,13 +15,8 @@
         .once('pageSlideRegion', Drupal.pageSlideRegion.init);
 
       // Toggling pageSlideRegion drawer.
-      $('#pageslideregion-toggle a', context).once('pageSlideRegion-toggle').click(function (e) {
-        Drupal.pageSlideRegion.toggle();
-        $(this).toggleClass('active');
-        // Allow resize event handlers to recalculate sizes/positions.
-        $(window).triggerHandler('resize');
-        return false;
-      });
+      $('#pageslideregion-toggle a', context)
+        .once('pageSlideRegion', Drupal.pageSlideRegion.toggle);
     }
   };
 
@@ -75,7 +70,13 @@
    * Toggle the pageSlideRegion.
    */
   Drupal.pageSlideRegion.toggle = function () {
-    $('body').toggleClass('pageslideregion-active');
+    $(this).click(function () {
+      $('body').toggleClass('pageslideregion-active');
+      $(this).toggleClass('active');
+      // Allow resize event handlers to recalculate sizes/positions.
+      $(window).triggerHandler('resize');
+      return false;
+    });
   };
 
 })(jQuery);
